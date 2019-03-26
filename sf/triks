@@ -1,0 +1,35 @@
+
+// cusyom date format
+
+private String customDateFormat(Datetime dateTimeValue){
+		
+		String suffix;
+
+		if(new Integer[] {11,12,13}.contains(dateTimeValue.day())){
+			suffix = 'th';
+		}
+		else if (Math.Mod(dateTimeValue.day(),10) == 1)
+        {
+            suffix = 'st';
+        }
+        else if (Math.Mod(dateTimeValue.day(),10) == 2)
+        {
+            suffix = 'nd';
+        }
+        else if (Math.Mod(dateTimeValue.day(),10) == 3)
+        {
+            suffix = 'rd';
+        }
+        else
+        {
+            suffix = 'th';
+        }
+		return String.format(
+			'{0}, {1}, {2}{3}',
+			new List<Object>{
+				dateTimeValue.format('h:mm a'),
+				dateTimeValue.format('MMMM'),
+				dateTimeValue.day(),
+				suffix
+		});
+	}
